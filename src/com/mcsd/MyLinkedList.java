@@ -103,5 +103,16 @@ public class MyLinkedList implements NodeList{
                 root = root.next();
             }
         }
+        //could be written, but not ideal in linked list
+/*        if (root != null){
+            System.out.println(root.getValue());
+            traverse(root.next());
+        }*/
     }
+
+
+
+
+
+
 }
