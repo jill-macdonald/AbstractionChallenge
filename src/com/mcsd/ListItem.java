@@ -22,19 +22,21 @@ public abstract class ListItem {
 
     //set methods
     abstract ListItem next();
+
     abstract ListItem setNext(ListItem item);
 
     abstract ListItem previous();
+
     abstract ListItem setPrevious(ListItem item);
 
     //compare
     abstract int compareTo(ListItem item);
 
-    public Object getValue(){
+    public Object getValue() {
         return value;
     }
 
-    public void setValue(Object value){
+    public void setValue(Object value) {
         this.value = value;
     }
 

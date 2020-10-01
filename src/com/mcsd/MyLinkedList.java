@@ -1,13 +1,13 @@
 package com.mcsd;
 
-public class MyLinkedList implements NodeList{
+public class MyLinkedList implements NodeList {
 
     private ListItem root = null;
 
     public MyLinkedList(ListItem root) {
         this.root = root;
     }
-    
+
     @Override
     public ListItem getRoot() {
         return this.root;
@@ -17,32 +17,32 @@ public class MyLinkedList implements NodeList{
 
     @Override
     public boolean addItem(ListItem newItem) {
-        if(this.root == null){
+        if (this.root == null) {
             //the list was empty, so this item becomes the head of the list
             this.root = newItem;
             return true;
         }
 
         ListItem currentItem = this.root;
-        while(currentItem != null){
+        while (currentItem != null) {
             int comparison = (currentItem.compareTo(newItem));
-            if(comparison < 0){
+            if (comparison < 0) {
                 //new item is greater, move right if possible
-                if(currentItem.next() != null){
+                if (currentItem.next() != null) {
                     currentItem = currentItem.next();
-                } else{
+                } else {
                     //there is no next, so insert here(end of list)
                     currentItem.setNext(newItem);
                     newItem.setPrevious(currentItem);
-    //short way ^: currentItem.setNext(newItem).setPrevious(currentItem)
+                    //short way ^: currentItem.setNext(newItem).setPrevious(currentItem)
                     return true;
                 }
-            } else if(comparison > 0){
+            } else if (comparison > 0) {
                 //new item is less, insert before
-                if(currentItem.previous() != null){
+                if (currentItem.previous() != null) {
                     currentItem.previous().setNext(newItem);
                     newItem.setPrevious(currentItem.previous());
-    //short way ^: currentItem.previous().setNext(newItem).setPrevious(currentItem.previous());
+                    //short way ^: currentItem.previous().setNext(newItem).setPrevious(currentItem.previous());
                     newItem.setNext(currentItem).setPrevious(newItem); //short way (remove currentItem.setPrevious)
                 } else {
                     //the node with a previous is the root
@@ -62,27 +62,27 @@ public class MyLinkedList implements NodeList{
 
     @Override
     public boolean removeItem(ListItem item) {
-        if(item != null){
+        if (item != null) {
             System.out.println("Deleting item " + item.getValue());
         }
 
         ListItem currentItem = this.root;
-        while(currentItem != null){
+        while (currentItem != null) {
             int comparison = currentItem.compareTo(item);
-            if (comparison == 0){
+            if (comparison == 0) {
                 //found the item
-                if (currentItem == this.root){
+                if (currentItem == this.root) {
                     this.root = currentItem.next();
-                } else{
+                } else {
                     currentItem.previous().setNext(currentItem.next());
-                    if (currentItem.next() != null){
+                    if (currentItem.next() != null) {
                         currentItem.next().setPrevious(currentItem.previous());
                     }
                 }
                 return true;
-            } else if (comparison < 0){
+            } else if (comparison < 0) {
                 currentItem = currentItem.next();
-            } else{ //comparison > 0
+            } else { //comparison > 0
                 //we are at an item greater than the one to be deleted
                 //so the item is not in the list
                 return false;
@@ -109,10 +109,6 @@ public class MyLinkedList implements NodeList{
             traverse(root.next());
         }*/
     }
-
-
-
-
 
 
 }
